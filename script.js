@@ -8,16 +8,20 @@ addButton.addEventListener('click', function () {
   const inputDate = document.querySelector('#inputDate');
   const inputAmount = document.querySelector('#inputAmount');
 
-  // create summary from user inputs
-  createSummary();
+  if (inputName.value === '' || inputDate.value === '' || inputAmount.value === '') {
+    alert('Please do not leave "Name", "Date", or "Amount" blank');
+  } else {
+    // create summary from user inputs
+    createSummary();
 
-  // execute function event close
-  closeButton();
+    // execute function event close
+    closeButton();
 
-  // reset user inputs
-  inputName.value = '';
-  inputDate.value = '';
-  inputAmount.value = '';
+    // reset user inputs
+    inputName.value = '';
+    inputDate.value = '';
+    inputAmount.value = '';
+  }
 });
 
 // Function for Event Close
@@ -84,4 +88,24 @@ function closeButtonElement() {
     closeClass.setAttribute('type', 'button');
     closeClass.classList.add('btn', 'btn-danger', 'btn-sm', 'close-button');
   });
+  // console.log(totalAmountValue);
 }
+
+function totalAmount(m) {
+  const amount = m.querySelector('td:nth-child(3)').childNodes;
+  return parseInt(amount[0].data);
+}
+const classTotalAmount = document.querySelector('.total-amount');
+let nmbTotalAmount = 0;
+
+setInterval(function () {
+  const allElementTr = tBody.querySelectorAll('tr');
+  let totalAmountValue = 0;
+  allElementTr.forEach(function (e) {
+    let amountValue = totalAmount(e);
+    totalAmountValue += amountValue;
+  });
+  // console.log(totalAmountValue);
+  nmbTotalAmount = totalAmountValue;
+  classTotalAmount.innerHTML = `IDR ${nmbTotalAmount}`;
+}, 0);
