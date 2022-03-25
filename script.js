@@ -92,8 +92,8 @@ function closeButtonElement() {
 }
 
 function totalAmount(m) {
-  const amount = m.querySelector('td:nth-child(3)').childNodes;
-  return parseInt(amount[0].data);
+  const amount = m.querySelector('td:nth-child(3)').childNodes; // Take Text Node
+  return parseInt(amount[0].data); // change node data to integer
 }
 const classTotalAmount = document.querySelector('.total-amount');
 let nmbTotalAmount = 0;
